@@ -15,13 +15,7 @@ const products=[
     tag:"POPULAR",
     plans:[["1 bulan",30000],["Permanen",55000]]
   },
-  {
-    name:"PAKET DIGITAL PRO",
-    desc:"Paket dengan opsi lebih lengkap. Hubungi admin untuk ketersediaan.",
-    symbol:"PRO",
-    tag:"PREMIUM",
-    plans:[["1 bulan",45000],["Permanen",80000]]
-  }
+  {name:"PAKET DIGITAL PRO",desc:"Paket dengan opsi lebih lengkap. Hubungi admin untuk ketersediaan.",symbol:"PRO",tag:"PREMIUM",plans:[["1 bulan",45000],["Permanen",80000]]}
 ];
 function render(){const root=$("#products");root.innerHTML=products.map((p,i)=>`<article class="card"><div class="art">${p.symbol}</div><h3>${p.name}</h3><p class="desc muted">${p.desc}</p><div class="bottom"><div><span class="muted">Mulai dari</span><div class="priceval">${fmt(Math.min(...p.plans.map(x=>x[1])))}</div></div><div class="card-actions"><button class="preview" data-preview="${i}">Preview</button><button class="buy" data-p="${i}">Buy ↗</button></div></div></article>`).join("")}
 function open(title,html){$("#modalTitle").textContent=title;$("#modalBody").innerHTML=html;$("#modal").hidden=false}
