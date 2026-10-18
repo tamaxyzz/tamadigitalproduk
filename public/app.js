@@ -1,4 +1,3 @@
-
 const CONFIG = {
   whatsappNumber: "6285815721322",
   telegramUrl: "https://t.me/username_admin",
