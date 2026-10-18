@@ -6,7 +6,12 @@ const products=[{name:"PAKET DIGITAL BASIC",desc:"Paket digital praktis untuk ke
 const $=s=>document.querySelector(s),money=n=>new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(n),esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function hideLoader(){const l=$("#pageLoader");if(l){l.classList.add("done");setTimeout(()=>l.remove(),450)}}
 window.addEventListener("error",hideLoader);window.addEventListener("unhandledrejection",hideLoader);setTimeout(hideLoader,2500);
-function art(p){return `<div class="product-art" style="--glow:${p.glow};--pa:${p.pa};--pb:${p.pb}"><span class="product-tag">${esc(p.tag)}</span><span class="product-symbol">${esc(p.symbol)}</span></div>`}
+function art(p){
+  return `<div class="product-art product-photo" style="--glow:${p.glow}">
+    <img src="${p.image}" alt="${esc(p.name)}">
+    <span class="product-tag">${esc(p.tag)}</span>
+  </div>`
+}
 function renderProducts(){const root=$("#products");if(!root)return;root.innerHTML=products.map((p,i)=>`<article class="product-card">${art(p)}<div class="product-body"><div class="titleline"><h3 class="product-title">${esc(p.name)}</h3><span class="star">✦</span></div><p class="product-desc">${esc(p.desc)}</p><div class="product-bottom"><div><span class="pricelabel">MULAI DARI</span><div class="product-price">${money(Math.min(...p.plans.map(x=>x[1])))}</div></div><div class="actions"><button class="preview" data-preview="${i}">Preview</button><button class="buy" data-buy="${i}">Beli ↗</button></div></div></div></article>`).join("")}
 function openModal(title,html){$("#modalTitle").textContent=title;$("#modalBody").innerHTML=html;$("#modal").hidden=false}
 function closeModal(){if($("#modal"))$("#modal").hidden=true}
