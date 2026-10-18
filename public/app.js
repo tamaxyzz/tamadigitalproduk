@@ -1,7 +1,28 @@
 const CONFIG={whatsappNumber:"6285815721322",telegramUrl:"https://t.me/username_admin",testimonialUrl:"https://t.me/username_testimoni",qrisImage:"https://files.catbox.moe/50w487.jpg",storeName:"TAMA ORDER"};
 const themes=[["dark","Dark","#795bff,#08c8f2"],["light","Light","#2586ff,#05c8df"],["ocean","Ocean","#00b9d8,#00e5b4"],["purple","Purple","#a33dff,#f044c8"],["emerald","Emerald","#00c879,#9cf43d"],["sunset","Sunset","#ff713c,#ffc13d"],["rose","Rose","#ff4d91,#ff88bf"],["cyberpunk","Cyberpunk","#ff3ec9,#00e5ff"],["nord","Nord","#81a1c1,#88c0d0"],["dracula","Dracula","#bd93f9,#ff79c6"],["coffee","Coffee","#a96a3d,#e0ad64"],["candy","Candy","#ff68ba,#8bbcff"],["matrix","Matrix","#00e65b,#a6ff4d"]];
-const products=[{name:"PAKET DIGITAL BASIC",desc:"Paket digital praktis untuk kebutuhan harian. Detail produk dikonfirmasi admin.",symbol:"T",tag:"STARTER",plans:[["1 bulan",20000],["Permanen",40000]]},{name:"PAKET DIGITAL PLUS",desc:"Pilihan paket digital tambahan dengan proses pemesanan mudah.",symbol:"＋",tag:"POPULAR",plans:[["1 bulan",30000],["Permanen",55000]]},{name:"PAKET DIGITAL PRO",desc:"Paket dengan opsi lebih lengkap. Hubungi admin untuk ketersediaan.",symbol:"PRO",tag:"PREMIUM",plans:[["1 bulan",45000],["Permanen",80000]]}];
-const $=s=>document.querySelector(s),fmt=n=>new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(n);
+const products=[
+  {
+    name:"PAKET DIGITAL BASIC",
+    desc:"Paket digital praktis untuk kebutuhan harian. Detail produk dikonfirmasi admin.",
+    symbol:"T",
+    tag:"STARTER",
+    plans:[["1 bulan",20000],["Permanen",40000]]
+  },
+  {
+    name:"PAKET DIGITAL PLUS",
+    desc:"Pilihan paket digital tambahan dengan proses pemesanan mudah.",
+    symbol:"＋",
+    tag:"POPULAR",
+    plans:[["1 bulan",30000],["Permanen",55000]]
+  },
+  {
+    name:"PAKET DIGITAL PRO",
+    desc:"Paket dengan opsi lebih lengkap. Hubungi admin untuk ketersediaan.",
+    symbol:"PRO",
+    tag:"PREMIUM",
+    plans:[["1 bulan",45000],["Permanen",80000]]
+  }
+];
 function render(){const root=$("#products");root.innerHTML=products.map((p,i)=>`<article class="card"><div class="art">${p.symbol}</div><h3>${p.name}</h3><p class="desc muted">${p.desc}</p><div class="bottom"><div><span class="muted">Mulai dari</span><div class="priceval">${fmt(Math.min(...p.plans.map(x=>x[1])))}</div></div><div class="card-actions"><button class="preview" data-preview="${i}">Preview</button><button class="buy" data-p="${i}">Buy ↗</button></div></div></article>`).join("")}
 function open(title,html){$("#modalTitle").textContent=title;$("#modalBody").innerHTML=html;$("#modal").hidden=false}
 function renderThemes(){const active=document.body.dataset.theme||"dark";$("#themeChoices").innerHTML=themes.map(([id,n,c])=>`<button class="theme-choice ${active===id?"active":""}" data-theme="${id}"><span class="swatch" style="--s:linear-gradient(135deg,${c})"></span>${n}</button>`).join("")}
